@@ -7,7 +7,7 @@ class ClassOne:
 
     def __init__(self, name):
         self.name = name
-        print('the class name is {}\nthe self name is: {}'.format(lassOne.name, self.name))
+        print('the class name is {}\nthe self name is: {}'.format(ClassOne.name, self.name))
 
     def getInfo(self, n1):
         self.n1 = n1
@@ -24,8 +24,13 @@ class ModuleClass:
         else:
             print("the module execute by another soft")
 
-    def getInfo(self):
-        print(self.name)
+    def getInfo(self, n2,n3):
+        self.n2= n2
+        self.n3 = n3
+        print(self.n2)
+        print(self.n3)
 
+'''
 m = ModuleClass("Init")
 m.getInfo()
+'''
