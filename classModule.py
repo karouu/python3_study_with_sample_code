@@ -24,13 +24,31 @@ class ModuleClass:
         else:
             print("the module execute by another soft")
 
-    def getInfo(self, n2,n3):
-        self.n2= n2
+    def getInfo(self, n2, n3):
+        self.n2 = n2
         self.n3 = n3
         print(self.n2)
         print(self.n3)
+
 
 '''
 m = ModuleClass("Init")
 m.getInfo()
 '''
+
+
+# variable reload
+class Vector:
+    def __init__(self, a, b)
+        self.a = a
+        self.b = b
+
+    def __str__(self):
+        return 'Vector (%d, %d)' % (self.a, self.b)
+
+    def __add__(self, other):
+        return 'Vector other(%d, %d)' % (self.a + other.a, self.b + other.b)
+
+v1  = Vector(2, 10)
+v2 = Vector(5, -1)
+print( v1+v2 )

@@ -1,0 +1,76 @@
+"""
+python3
+"""
+import random
+import requests
+
+WORD_URL = "http://learncodethehardway.org/words.txt"
+PHRASES = {
+    "class %%%(%%%):":
+        "Make a class named %%% that is-a %%%.",
+
+    "class %%%(object):\n\tdef __init__(self, ***)":
+        "class %%% has-a __init__ that takes self and *** parameters.",
+
+    "class %%%(object):\n\tdef ***(self, @@@)":
+        "class %%% has-a function named *** that takes self and @@@ parameters.",
+
+    "*** = %%%()":
+        "Set *** to an instance of class %%%.",
+
+    "***.***(@@@)":
+        "From *** get the *** function, and call it with parameters self, @@@.",
+
+    "***.*** = '***'":
+        "From *** get the *** attribute and set it to '***'."
+}
+
+r = requests.get(WORD_URL)
+WORDS = r.text.splitlines()
+
+
+def convert(snippet, phrase):
+    class_names = [w.capitalize for w in random.sample(WORDS, snippet.count("%%%"))]
+    other_names = random.sample(WORDS, snippet.count('***'))
+    param_names = []
+    results = []
+
+    param_count = random.randint(1, 3)
+    param_names.append(','.join(random.sample(WORDS, param_count)))
+
+    for sentence in snippet, phrase:
+        result = sentence[:]
+
+        # fake class names
+        for word in class_names:
+            result = result.replace("%%%", word, 1)
+
+        # fake other names:
+        for word in other_names:
+            result = result.replace("***", word, 1)
+
+        # fake parameter lists
+        for word in param_names:
+            result = result.replace("@@@", word, 1)
+
+        results.append(result)
+    return results
+
+
+if __name__ == "__main__":
+    try:
+        while True:
+            snippets = list(PHRASES.keys())
+            random.shuffle(snippets)
+
+            for snippet in snippets:
+                phrase = PHRASES[snippet]
+
+                question, answer = convert(snippet, phrase)
+
+                print(question)
+                input("> ")
+                print(answer)
+
+    except EOFError:
+        print("\nBye")
