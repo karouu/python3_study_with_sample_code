@@ -6,9 +6,12 @@ while True:
     count = 0
     for i in range(0, len(array1)-1):
         if array1[i]>array1[i+1]:
+            '''
             tmp = array1[i]
             array1[i] = array1[i+1]
             array1[i+1] = tmp
+            '''
+            array[i],array[i+1] = array[i+1],array[i]
             count += 1
     if count == 0:
         break
@@ -30,7 +33,10 @@ array3 = array
 for i in range(0, len(array3)-1):
     for j in range(i+1, len(array3)):
         if array3[i] > array3[j]:
+            '''
             tmp = array3[i]
             array3[i] = array3[j]
             array3[j] = tmp
+            '''
+            array3[i],array3[j] = array3[j],array3[i]
 print(array3)
