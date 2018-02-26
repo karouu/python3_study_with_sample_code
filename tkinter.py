@@ -7,7 +7,7 @@ if __name__ == '__main__':
     k = 1
     j = 1
     for i in range(0,26):
-        canvas.create_oval(310 - k,250 - k,310 + k,250 + k, width=1)
+        canvas.create_oval(310 - k,250 - k,310 + k, 250 + k, width=1)
         k += j
         j += 0.3
 

@@ -400,3 +400,5 @@ his is where “class is- a object” comes in. They decided that they would use
 “object,” lowercased, to be the “class” that you inherit from to make a class. Confusing, right?
 A class inherits from the class named object to make a class, but it’s not an object. (Really
 it’s a class, but do not forget to inherit from object.)
+
+
