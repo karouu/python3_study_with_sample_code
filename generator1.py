@@ -1,4 +1,3 @@
-
 import re
 
 def build_match_and_apply_functions(pattern, search, replace):
@@ -16,6 +15,7 @@ patterns = \
     ('$',                '$',  's')
   )
 
+'''comprehention, startup cost is high'''
 rules = [ build_match_and_apply_functions(pattern, search, replace)
          for (pattern, search, replace) in patterns ]
 

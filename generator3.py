@@ -16,7 +16,10 @@ def rules(fules_filename):
             pattern, search, replace = line.split(None, 3)
             yield build_match_and_apply_functions(
                     pattern, search, replace)
-''' yield makes rules() a generator, so you can use it directly in a for loop'''
+'''
+yield makes rules() a generator, so you can use it directly in a for loop
+shortage is that everytime when execute plural(noun), you have to open a file and read it
+'''
 
 def plural(noun, rules_filename='plural5-rules.txt'):
     for matches_rule, apply_rule in rules(rules_filename):

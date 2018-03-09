@@ -9,6 +9,7 @@ def build_match_and_apply_functions(pattern, search, replace):
 
 rules = []
 
+''' store data in file, separate data and code, computing cost is high'''
 with open('plural4-rules.txt', encoding='utf-8') as pattern_file:
     for line in pattern_file:
         pattern, search, replace = line.split(None, 3)
