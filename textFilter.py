@@ -9,6 +9,7 @@ for i,name in enumerate(pf_file):
 
 for file in pf_file:
 	with open(file,'a+') as f:
+		f.seek(0)
 		all_text = f.readlines()
 		for i, s in enumerate(all_text):
 			all_text[i] = s.replace('@loginrequired()','@loginrequired')

@@ -3,10 +3,8 @@ summirize from https://www.python-course.eu/python3_decorators.php
 - function decorators
 - class decorators
 
-To be precise, the usage of decorates is very easy,
-but writing decorators can be complicated, especially
-if you are not experienced with decorators and some functional programming concepts.
-
+To be precise, the usage of decorates is very easy, but writing decorators can be complicated,
+especially if you are not experienced with decorators and some functional programming concepts.
 '''
 
 # functions inside functions
@@ -55,6 +53,7 @@ def foo(func):
 print( foo(math.sin) )
 print( foo(math.cos) )
 
+
 # functions returning functions
 def f(x):
     def g(y):
@@ -96,6 +95,7 @@ p4  = polynomial_creator(-1, 2, 1)
 
 for x in range(-2, 2, 1):
     print(x, p1(x), p2(x), p3(x), p4(x))
+
 
 # decorator example
 print('# a simple decorator')
