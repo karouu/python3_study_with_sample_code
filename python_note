@@ -108,7 +108,7 @@ It means if you change what a parameter refers to within a function, the change 
 
 - required argument
 - keyword arguments
-	- the order of parameters does not matter
+    - the order of parameters does not matter
 - default arguments
 
 Keyword arguments
@@ -204,11 +204,11 @@ A package is a hierarchical file directory structure that defines a single Pytho
 
 
 /phone
-	- pots.py
-	- Isdn.py
-	- G3.py
-	-__init__.py
-		- import phone
+    - pots.py
+    - Isdn.py
+    - G3.py
+    -__init__.py
+        - import phone
 
 
 '''
@@ -313,6 +313,7 @@ with open("myfile.txt") as f:
 import math as m
 math.sqrt(16) == m.sqrt(16)
 
+
 Object Oriented Pragraming
 class
 object
@@ -322,13 +323,9 @@ method
 function
 inheritance
 
-
-
-
 class Superhero(Human):
     species = 'Superhuman'
-    def __init__(self, name, movie=False,
-                 superpowers=["super strength", "bulletproofing"]):
+    def __init__(self, name, movie=False, superpowers=["super strength", "bulletproofing"]):
         self.fictional = True
         self.movie = movie
         self.superpowers = superpowers

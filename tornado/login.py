@@ -27,8 +27,8 @@ class LoginHandler(BaseHandler):
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/login", LoginHandler),
-], cookie_secret="61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=")
+    ], cookie_secret="61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o/Vo=")
 
 if __name__ == "__main__":
     application.listen(8091)
-    tornado.ioloop.IOloop.current().start()
+    tornado.ioloop.IOLoop.current().start()
