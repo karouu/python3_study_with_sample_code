@@ -7,6 +7,10 @@ def build_match_and_apply_functions(pattern, search, replace):
         return re.sub(search, replace, word)
     return (matches_rule, apply_rule)
 
+'''
+build a generator yourself
+startup cost and computing cost are both low, and data and code are separated
+'''
 class LazyRules:
     rules_filename = 'plural.txt'
 
@@ -37,11 +41,6 @@ class LazyRules:
         self.cache.append(funcs)
         return funcs
 
-'''
-build a generator yourself
-startup cost and computing cost are both low, and
-data and code are separated
-'''
 rules = LazyRules()
 
 def plural(noun):
@@ -50,9 +49,9 @@ def plural(noun):
             return apply_rule(noun)
 
 '''
- the pattern file is opened (during __init__()), and it remains open until the final rule is reached.
- Python will eventually close the file when it exits, or after the last instantiation of the LazyRules class is destroyed,
- but still, that could be a long time.
- If this class is part of a long-running Python process, the Python interpreter may never exit,
- and the LazyRules object may never get destroyed.
- '''
+the pattern file is opened (during __init__()), and it remains open until the final rule is reached.
+Python will eventually close the file when it exits, or after the last instantiation of the LazyRules class is destroyed,
+but still, that could be a long time.
+If this class is part of a long-running Python process, the Python interpreter may never exit,
+and the LazyRules object may never get destroyed.
+'''

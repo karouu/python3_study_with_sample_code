@@ -1,5 +1,7 @@
+# http://www.diveintopython3.net/iterators.html#a-fibonacci-iterator
 import re
 
+# Notice function variable scope
 def build_match_and_apply_functions(pattern, search, replace):
     def matches_rule(word):
         return re.search(pattern, word)

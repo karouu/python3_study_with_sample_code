@@ -29,3 +29,4 @@ class foo:
 f = foo()
 g = foo(2)
 
+

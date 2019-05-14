@@ -5,7 +5,7 @@ import requests
 import sys
 
 WORD_URL = "http://learncodethehardway.org/words.txt"
-# WORDS = []
+
 PHRASES = {"class %%%(%%%):": "Make a class named %%% that is-a %%%.",
 
            "class %%%(object):\n\tdef __init__(self, ***)": "class %%% has-a __init__ that takes self and *** parameters.",
@@ -16,30 +16,31 @@ PHRASES = {"class %%%(%%%):": "Make a class named %%% that is-a %%%.",
 
            "***.***(@@@)": "From *** get the *** function, and call it with parameters self, @@@.",
 
-           "***.*** = '***'": "From *** get the *** attribute and set it to '***'."}
+           "***.*** = '***'": "From *** get the *** attribute and set it to '***'." }
 
-# do they want to drill phrases first
+# do they want to drill phrases first?
 PHRASE_FIRST = False
 if len(sys.argv) == 2 and sys.argv[1] == "english":
     PHRASE_FIRST = True
+#print(sys.argv) file directory
 
 # load up the words from the website
-
 text = requests.get(WORD_URL)
-WORDS = text.text.splitlines()
+WORDS = text.text.splitlines() # a list
 
 def convert(snippet, phrase):
-    class_names = [w.capitalize() for w in random.sample(WORDS, snippet.count("%%%"))]
-    other_names = random.sample(WORDS, snippet.count("***"))
-    results = []
+    #list comprehension
+    class_names = [w.capitalize() for w in random.sample( WORDS, snippet.count("%%%") )]
+    other_names = random.sample( WORDS, snippet.count("***") )
     param_names = []
+    results = []
 
-    for i in range(0, snippet.count("@@@")):
+    for i in range(0, snippet.count("@@@")):  #@@@ arg names
         param_count = random.randint(1, 3)
-        param_names.append(', '.join(random.sample(WORDS, param_count)))
+        param_names.append(', '.join( random.sample(WORDS, param_count)) )
 
-    for sentence in snippet, phrase:  # tuple generator
-        result = sentence[:]
+    for sentence in (snippet, phrase):  # tuple generator
+        result = sentence[:]     # copy
 
         # fake class names
         for word in class_names:
@@ -54,8 +55,8 @@ def convert(snippet, phrase):
             result = result.replace("@@@", word, 1)
 
         results.append(result)
+        
     return results
-
 
 # keep going until they hit CTRL-D
 if __name__ == '__main__':
@@ -73,6 +74,6 @@ if __name__ == '__main__':
                     question, answer = answer, question
                 print(question)
                 input("> ")
-                print("ANSWER: {}\n\n".format(answer))
+                print( "ANSWER: {}\n\n".format(answer) )
     except EOFError:
         print("\nBye")

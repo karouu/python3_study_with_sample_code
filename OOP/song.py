@@ -8,11 +8,12 @@ class Mystaff():
 class Song(object):
     def __init__(self):
         pass
+    
     def sing_me_a_song(self, lyrics, singer):
         self.lyrics = lyrics
         self.singer = singer
 
-        print("singer of %s\'s song"%self.singer)
+        print( "singer of %s\'s song" % self.singer )
         for line in self.lyrics:
             print(line)
 
@@ -21,8 +22,8 @@ song = ["Happy birthday to you",
 "So I'll stop right there"]
 singer = "taylor"
 
-m = Song( )
-m.sing_me_a_song(song,singer)
+m = Song()
+m.sing_me_a_song( song, singer )
 
 
 

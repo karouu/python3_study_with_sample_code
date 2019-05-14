@@ -7,11 +7,14 @@ class ClassOne:
 
     def __init__(self, name):
         self.name = name
-        print('the class name is {}\nthe self name is: {}'.format(ClassOne.name, self.name))
+        print('the class name is {} \nthe self name is: {}'.format(ClassOne.name, self.name))
 
     def getInfo(self, n1):
         self.n1 = n1
         print('get information by self.name, n1: {}'.format(self.n1))
+    
+one=ClassOne('haha')
+one.getInfo(111)
 
 
 class ModuleClass:
@@ -30,19 +33,16 @@ class ModuleClass:
         print(self.n2)
         print(self.n3)
 
-
-'''
 m = ModuleClass("Init")
-m.getInfo()
-'''
-
+m.getInfo(233,322)
 
 # variable reload
 class Vector:
-    def __init__(self, a, b)
+    def __init__(self, a, b):
         self.a = a
         self.b = b
-
+    
+    #print(Vector) result
     def __str__(self):
         return 'Vector (%d, %d)' % (self.a, self.b)
 
@@ -51,4 +51,5 @@ class Vector:
 
 v1  = Vector(2, 10)
 v2 = Vector(5, -1)
+print(v1)
 print( v1+v2 )
