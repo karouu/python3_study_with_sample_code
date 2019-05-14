@@ -1,6 +1,5 @@
 class test:
     name = 'lily'
-
     def __init__(self, age):
         self.age = age
         print('{} age is {}'.format(test.name, self.age))
@@ -15,10 +14,11 @@ class ChildA(Base):
 
 class ChildB(Base):
     def __init__(self):
-        super(ChildB, self).__init__()
+        super(ChildB, self).__init__() #override
 
 ChildA()
 ChildB()
+print()
 
 class Animals:
     def __init__(self, name):
@@ -28,9 +28,13 @@ class Animals:
 
 class Dog(Animals):
     def greet(self):
-        super(Dog, self).greet()
-        print('Wangwang....')
+        super(Dog, self).greet()  #extend
+        print('Wangwang....\n')
 
+dog = Dog('cd')
+dog.greet()
+
+# inheritance
 class BaseClass(object):
     def __init__(self):
         print('enter BaseClass')
@@ -41,6 +45,7 @@ class A(BaseClass):
         print('enter A')
         super(A, self).__init__()
         print('leave A')
+        
 class B(BaseClass):
     def __init__(self):
         print('enter B')
@@ -50,8 +55,10 @@ class B(BaseClass):
 class C(B,A):
     def __init__(self):
         print('enter C')
-        super(C, self).__init__()
+        super(C, self).__init__() #multiple father class
         print('leave C')
+
+cc = C() # how to print in shell
 
 
 
