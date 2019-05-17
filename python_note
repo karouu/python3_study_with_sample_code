@@ -7,12 +7,12 @@ Standard Data types
 - tuple ( )
 - dictionary  { }
 
-things you cant do with all sequence types
-indexing
-slicing
-adding
-multiplying
-checking for membership
+things you cant do with all sequence types:
+- indexing
+- slicing
+- adding
+- multiplying
+- checking for membership
 
 var = ooxx
 del var

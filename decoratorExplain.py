@@ -23,7 +23,7 @@ def temperature(t):
     def celsius2fahrenheit(x):
         return 9 * x / 5 + 32
 
-    result = "It's " + str(celsius2fahrenheit(t)) + " degrees!"
+    result = "It's " + str(celsius2fahrenheit(t)) + " degrees!\n"
     return result
 
 print(temperature(20))
@@ -41,6 +41,7 @@ def f2(func):
     print( "func's real name is " + func.__name__ )
 
 f2( g2 )
+print()
 
 import math
 def foo(func):
@@ -52,9 +53,9 @@ def foo(func):
 
 print( foo(math.sin) )
 print( foo(math.cos) )
+print()
 
-
-# functions returning functions
+# functions return functions
 def f(x):
     def g(y):
         return y + x + 3
@@ -66,7 +67,7 @@ nf2 = f(3)
 print(nf1(1))
 print(nf2(1))
 
-print('# create polynomials of degree 2 ')
+print('\n# create polynomials of degree 2 ')
 def polynomial_creator(a, b, c):
     def polynomial(x):
         return a * x**2 + b * x + c
@@ -91,14 +92,14 @@ def polynomial_creator( *coefficients ):
 p1 = polynomial_creator(4)
 p2 = polynomial_creator(2, 4)
 p3 = polynomial_creator(2, 3, -1, 8, 1)
-p4  = polynomial_creator(-1, 2, 1)
+p4 = polynomial_creator(-1, 2, 1)
 
 for x in range(-2, 2, 1):
     print(x, p1(x), p2(x), p3(x), p4(x))
 
 
 # decorator example
-print('# a simple decorator')
+print('\n# a simple decorator')
 def our_decorator( func ):
     def function_wrapper(x):
         print( "Before calling " + func.__name__ )
@@ -118,13 +119,15 @@ foo = our_decorator(foo)
 print("We call foo after decoration:")
 foo(42)
 
-print('# the usual syntax for decorators in python')
+
+print('\n# the usual syntax for decorators in python')
 
 @our_decorator
 def foo2(x):
     print("Hi, foo has been called with " + str(x))
 
 foo2("Hi")
+
 
 def our_decorator2( func ):
     def function_wrapper(x):
@@ -140,14 +143,15 @@ def succ(n):
 
 succ(10)
 
-
+print()
 from math import sin, cos
 sin = our_decorator2(sin)
 cos = our_decorator2(cos)
 for f in [sin,cos]:
     f(3.1415)
+print()
 
-# a generalized version of the function_wrapper, which accepts functions with arbitrary parameters
+#a generalized version of the function_wrapper, which accepts functions with arbitrary parameters
 from random import random, randint, choice
 
 def our_decorator3(func):
@@ -167,8 +171,9 @@ choice = our_decorator3(choice)
 random()
 randint(3, 8)
 choice([4, 5, 6])
+print()
 
-# use cases
+# usage cases
 # checking arguments with a decorator
 def argument_test_natural_number( f ):
     def helper(x):
@@ -188,10 +193,11 @@ def factorial(n):
 for i in range(1,10):
 	print(i, factorial(i))
 
-#print(factorial(-1))
+#factorial(-1)
 
 # Counting function calls with decorators
 def call_counter( func ):
+    
     def helper(x):
         helper.calls += 1
         return func(x)
@@ -200,54 +206,54 @@ def call_counter( func ):
     return helper
 
 @call_counter
-def succ(x):
-    return x + 1
+def suc(x):
+    return x + 100
 
-print('succ.calls counter is {}'.format(succ.calls))
+print('succ.calls counter is {}'.format(suc.calls))
 for i in range(10):
-    succ(i)
+    ss=suc(i)
+    print(ss)
+    
+print('succ.calls counter is {}\n'.format(suc.calls))
 
-print('succ.calls counter is {}'.format(succ.calls))
 
 # decorators which can cope with functions with
 # an arbitrary number of positional and keyword parameters.
 def call_counter2( func ):
+    
     def helper(*args, **kwargs):
         helper.calls += 1
         return func(*args, **kwargs)
+    
     helper.calls = 0
-
     return helper
 
 @call_counter2
 def mul1(x, y=1):
     return x*y + 1
 
-mul1(3, 4)
-mul1(4)
-mul1(y=3, x=2)
-
-print('mul1.call counter is {}'.format(mul1.calls))
+print('\nmul1.call counter is {}'.format(mul1.calls))
+m11=mul1(3, 4)
+print(m11)
+m12=mul1(4)
+print(m12)
+m13=mul1(y=3, x=2)
+print(m13)
+print('mul1.call counter is {}\n'.format(mul1.calls))
 
 
 # decorators with parameters
-def evening_greeting(func):
+def evening_greeting( func ):
     def function_wrapper(x):
         print("Good evening, " + func.__name__ + " returns:")
         func(x)
     return function_wrapper
-
-def morning_greeting( func ):
-    def function_wrapper(x):
-        print("Good morning, " + func.__name__ + " returns:")
-        func(x)
-    return function_wrapper
-
+    
 @evening_greeting
-def foo(x):
+def fooo(x):
     print(42)
 
-foo("Hi")
+fooo("Hi")
 
 
 def greeting( expr ):
@@ -259,10 +265,11 @@ def greeting( expr ):
     return greeting_decorator
 
 @greeting("καλημερα")
-def foo2(x):
+def fooo2(x):
     print(42)
 
-foo2("Hi")
+fooo2("Hi")
+
 
 def foo3(x):
     print(42)
@@ -273,7 +280,8 @@ foo3('Hi')
 '''
 foo3 = greeting('Friday today')(foo3)
 foo3('Hi')
-print(foo3.__name__)
+print(foo3.__name__ + '\n')
+
 
 # using wraps from functools
 from functools import wraps
@@ -293,9 +301,8 @@ def greeting2( func ):
     return function_wrapper
 
 
-# classes instead of functions
-# the __call__ method
 
+# class built-in __call__ method
 class A:
     def __init__(self):
         print("An instance of A was initialized")
@@ -312,6 +319,7 @@ x(3, 4, x=11, y=10)
 class Fibonacci:
     def __init__(self):
         self.cache = {}
+    
     def __call__(self, n):
         if n not in self.cache:
             if n == 0:
@@ -326,6 +334,7 @@ fib = Fibonacci()
 
 for i in range(15):
     print(fib(i), end=", ")
+print()
 
 
 # using a class as a decorator
@@ -336,10 +345,10 @@ def decorator1(f):
     return helper
 
 @decorator1
-def fooo():
-    print("inside fooo()")
+def fooo3():
+    print("inside fooo3()\n")
 
-fooo()
+fooo3()
 
 
 class decorator2:
@@ -350,10 +359,10 @@ class decorator2:
         self.f()
 
 @decorator2
-def fooo2():
-    print("inside fooo2()")
+def fooo4():
+    print("inside fooo4()")
 
-fooo2()
+fooo4()
 
 
 
