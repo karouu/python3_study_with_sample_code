@@ -1,0 +1,3 @@
+size_t fwrite( void* ptr, size_t size, size_t blocks, FILE* fp);
+
+size_t fread(  void* ptr, size_t size, size_t blocks, FILE* fp);
