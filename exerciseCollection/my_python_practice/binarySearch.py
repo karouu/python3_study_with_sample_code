@@ -1,5 +1,5 @@
 array = [1,7,13,29,38,42,50,63]
-k = 13
+k = int(input('what\'s number you want to find:'))
 min = 0
 max = len(array)-1
 flag = True

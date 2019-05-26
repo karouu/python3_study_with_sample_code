@@ -1,4 +1,4 @@
-# sum of 1+2!+3!+4!+...+n!
+# sum of fractorial: 1+2!+3!+4!+...+n!
 import os
 
 n = int(os.sys.argv[1])
@@ -11,7 +11,7 @@ def op(x):
 		r *= i
 	return r
 
-s1 = sum( map(op,L))
+s1 = sum( map(op,L) )
 print('sum1 resutl is {}'.format(s1))
 
 
@@ -32,13 +32,13 @@ def multi(m):
 		result *= i
 	return result	
 
-def sum3(n):
+def sum3(n,m):
 	sum = 0
 	for i in range(1,n+1):
-		sum += multi(i)
+		sum += m(i)
 	return sum
 
-print( 'sum3 result is {}'.format(sum3(n)) )
+print( 'sum3 result is {}'.format(sum3(n,multi)) )
 
 # method 4
 aList = []
@@ -46,7 +46,6 @@ for i in range(1,n+1):
 	aList.append(multi(i))
 sum4 = sum(aList)
 print( 'sum4 result is {}'.format(sum4) )
-
 
 
 

@@ -15,12 +15,7 @@ s = 'Sorting1234'
 
 #example 2
 #sorting last char of the element in a list from small to big according ASCII
-"""
-def lastchar(chars):
-    return chars[-1]
-aL = ['abc','b','AAz','ef']
-sorted( aL, key =lastchar)
-"""
+
 
 # example 3
 # sorting 'age' key in dictionary element of list from small to big

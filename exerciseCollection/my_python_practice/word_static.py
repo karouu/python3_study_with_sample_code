@@ -4,6 +4,7 @@ import os
 import re
 from pprint import pprint
 
+#evaluate word frequency in the txt
 path = os.getcwd()+'/long.txt'
 
 def word_static(path):
