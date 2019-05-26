@@ -46,10 +46,12 @@ def testGreedys(foods, maxUnits):
     print('Use greedy by value to allocate', maxUnits,
           'calories')
     testGreedy(foods, maxUnits, Food.getValue)
+    
     print('\nUse greedy by cost to allocate', maxUnits,
           'calories')
     testGreedy(foods, maxUnits,
                lambda x: 1/Food.getCost(x))
+               
     print('\nUse greedy by density to allocate', maxUnits,
           'calories')
     testGreedy(foods, maxUnits, Food.density)
@@ -76,11 +78,11 @@ def maxVal(toConsider, avail):
             result = (withVal, withToTake + (nextItem,))
         else:
             result = (withoutVal, withoutToTake)
+    
     return result
 
 def testMaxVal(foods, maxUnits, printItems = True):
-    print('Use search tree to allocate', maxUnits,
-          'calories')
+    print('Use search tree to allocate', maxUnits, 'calories')
     val, taken = maxVal(foods, maxUnits)
     print('Total value of items taken =', val)
     if printItems:

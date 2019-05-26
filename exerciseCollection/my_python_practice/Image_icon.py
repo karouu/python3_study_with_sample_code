@@ -13,5 +13,5 @@ width,height = img.size
 
 draw = ImageDraw.Draw(img)
 
-draw.text( (width-height,0),num,fill="green",font=font)
+draw.text( (width-height, 0), num, fill="green", font=font)
 img.save("/home/matter/Pictures/p2_out.jpg")
