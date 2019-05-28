@@ -11,7 +11,7 @@ class Food(object):
     def density(self):
         return self.getValue()/self.getCost()
     def __str__(self):
-        return self.name + ': <' + str(self.value)\
+        return self.name + ': <' + str(self.value) \
                  + ', ' + str(self.calories) + '>'
 
 def buildMenu(names, values, calories):
@@ -24,15 +24,16 @@ def buildMenu(names, values, calories):
 def greedy(items, maxCost, keyFunction):
     """Assumes items a list, maxCost >= 0,
          keyFunction maps elements of Items to numbers"""
-    itemsCopy = sorted(items, key = keyFunction,
-                       reverse = True)
+    itemsCopy = sorted(items, key = keyFunction, reverse = True)
     result = []
     totalValue, totalCost = 0.0, 0.0
+    
     for i in range(len(itemsCopy)):
         if (totalCost+itemsCopy[i].getCost()) <= maxCost:
             result.append(itemsCopy[i])
             totalCost += itemsCopy[i].getCost()
             totalValue += itemsCopy[i].getValue()
+            
     return (result, totalValue)
 
 def testGreedy(items, constraint, keyFunction):
@@ -55,6 +56,7 @@ def testGreedys(foods, maxUnits):
           'calories')
     testGreedy(foods, maxUnits, Food.density)
 
+# decision/search tree: brute force algorithem 
 def maxVal(toConsider, avail):
     """Assumes toConsider a list of items, avail a weight
        Returns a tuple of the total value of a solution to the
@@ -97,3 +99,9 @@ foods = buildMenu(names, values, calories)
 testGreedys(foods, 750)
 print('')
 testMaxVal(foods, 750)
+
+'''
+testGreedys(foods,1000)
+print('')
+testMaxVal(foods, 1000)
+'''

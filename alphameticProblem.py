@@ -12,6 +12,7 @@ def solve(puzzle):
     characters = tuple(ord(c) for c in sorted_characters)
     digits = tuple(ord(c) for c in '0123456789')
     zero = digits[0]
+    
     for guess in itertools.permutations(digits, len(characters)):
         if zero not in guess[:n]:
             equation = puzzle.translate(dict(zip(characters, guess)))

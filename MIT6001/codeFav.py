@@ -375,6 +375,7 @@ def g2(y):
 #print(g(x))
 #g2(x)              #UnboundLocalError
 
+
 #With global inside funciton, you can modify varible outside function.
 #Fibobacci with a dictionary, more efficient, visualize with python tutor
 def fib(n, d):
