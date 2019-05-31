@@ -592,11 +592,20 @@ def bubleSort(L):
                 clear = False
                 L[j],L[j-1] = L[j-1],L[j]
             
-L = [5,3,4,5,1,2,1,1]
-bubleSort(L)
-#selSort(L)
-print(L)
+L = [5,100,3,99,4,5,123,1,66,1,1]
+#bubleSort(L)
+#print(L)
 
+def bublesort2(aL):
+    L = aL[:]
+    for i in range(len(L)-1):
+        for j in range(len(L)-1-i):
+            if L[j] > L[j+1]:
+                L[j],L[j+1] = L[j+1],L[j]
+    return L
+
+print('before sorting: ',L)
+print('after sorting: ',bublesort2(L))
 
 
 
