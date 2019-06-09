@@ -326,15 +326,16 @@ def func_c(z):      # z is function name
     print("inside func_c")
     return z()
     
-#print(func_a())
-#print(func_b(2)+5)
-#print(func_c(func_a)  #not func_a(),otherwise it will invoke function
+print(func_a())
+print(func_b(2)+5)
+print(func_c(func_a))  #not func_a(),otherwise it will invoke function
+
 
 def a(x, y, z):         # y, z can be function name
-     if x:
-         return y
-     else:
-         return z
+    if x:
+        return y
+    else:
+        return z
 
 def b(q, r):
     return a(q>r, q, r)
