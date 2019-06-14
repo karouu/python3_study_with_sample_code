@@ -61,6 +61,26 @@ def ranChars2(nchars):
     return random.sample(s, nchars)
 
 #print(''.join(ranChars2(10)))
-
-
 print('square root: %0.6f' % 2**0.5)
+
+# input: filename or directory,
+# then remove that file\directory, subdirectory, sub-subdirectory
+def rmAll(rm_name, goal=''):
+
+    if os.path.isdir(rm_name):
+        for f in os.listdir(rm_name):
+            if f.startswith(goal):
+                for ff in os.listdir(rm_name + '\\' + f):
+                    os.remove(rm_name+'\\'+f+ff)
+            os.removedirs(rm_name+'\\'+f)
+    else:
+        os.remove(rm_name)
+
+def rmRecur(rm_name):
+    if not os.path.isdir(rm_name):
+        os.remove(rm_name)
+    else:
+        for f in os.listdir(rm_name):
+            mm = rm_name+'\\'+f
+            rmRecur(mm)
+        os.removedirs(rm_name)

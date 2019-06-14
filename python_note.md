@@ -167,94 +167,79 @@ list(map(max, [1, 2, 3], [4, 2, 1]))               # => [4, 2, 3]
 list(filter(lambda x: x > 5, [3, 4, 5, 6, 7]))     # => [6, 7]
 
 
-Scope of Variables
+## Scope of Variables
 Variables that are defined inside a function body have a local scope, and those defined outside have a global scope.
 
 The scope of a variable determines the portion of the program where you can access a particular identifier. There are two basic scopes of variables in Python
 - Global variables
 - Local variables
 
-Module
-A module is a Python object with arbitrarily named attributes that you can bind and reference.
-Simply, a module is a file consisting of Python code. A module can define functions, classes and variables. 
+**What's *namespace* and *scoping*?**
+- KEY-VALUE dictionary
+Variables are names (identifiers) that map to objects.
+A *namespace* is a dictionary of variable names (keys) and their corresponding objects(values).
 
-The Python code for a module named ooxx normally resides in a file named ooxx.py. 
+- Local vs Global namespace
 
-Python's from statement lets you import specific attributes from a module into the current namespace.
+## Module
+- A module is a Python object with arbitrarily named attributes that you can bind and reference.
+- Simply, a module is a file consisting of Python code. A module can define functions, classes and variables. 
+- The Python code for a module named ooxx normally resides in a file named ooxx.py. 
+- Python's __from statement__ lets you import specific attributes from a module into the current namespace.
+- When you import a module, the Python interpreter searches for the module in the following sequences:
 
-When you import a module, the Python interpreter searches for the module in the following sequences −
+  - The current directory.
+    > If the module isn't found, Python then searches each directory in the shell variable PYTHONPATH.
+    > If all else fails, Python checks the default path. On UNIX, this default path is normally /usr/local/lib/python/.
 
-The current directory.
-
-If the module isn't found, Python then searches each directory in the shell variable PYTHONPATH.
-
-If all else fails, Python checks the default path. On UNIX, this default path is normally /usr/local/lib/python/.
-
-The module search path is stored in the system module sys as the sys.path variable. The sys.path variable contains the current directory, PYTHONPATH, and the installation-dependent default.
+The module search path is stored in the system module __sys__ as the sys.path variable. The sys.path variable contains the current directory, PYTHONPATH, and the installation-dependent default.
 
 Variables are names (identifiers) that map to objects. A namespace is a dictionary of variable names (keys) and their corresponding objects (values).
 
-
-The dir() built-in function returns a sorted list of strings containing the names defined by a module.
-
 the special string variable __name__ is the module's name, and __file__ is the filename from which the module was loaded.
 
-Packages in Python
-A package is a hierarchical file directory structure that defines a single Python application environment that consists of modules and subpackages and sub-subpackages, and so on.
-
-
+# Packages in Python
 /phone
     - pots.py
     - Isdn.py
     - G3.py
-    -__init__.py
+    - __init__.py
         - import phone
 
+## what's a module in python?
+* A module is a file consisting of Python code. 
+* A module can define functions, classes and variables. 
+* A module can also include runnable code.
 
-'''
-what's a module in python?
-A module is a file consisting of Python code. 
-A module can define functions, classes and variables. 
-A module can also include runnable code.
+## then what's package in python ?
+> It includes many directories and python files. 
+> "A package is a hierarchical file directory structure that 
+> defines a **single Python application environment** that 
+> consists of modules and subpackages and sub-subpackages, and so on."
 
-then what's package in python ?
-It includes many directories and python files. 
-All of them define a single Python application environment.
-"A package is a hierarchical file directory structure that 
-defines a single Python application environment that 
-consists of modules and subpackages and sub-subpackages, and so on."
+**What's the role of *__init__.py* file in a Python package ?**
+> To import a package by the package's name
 
-What's the role of __init__.py file in a Python  package ?
-To import a package by the package's name
-
-how do dir() do?
+**how do *dir()* do?**
 built-in function returns a sorted list of strings 
 containing the names defined by a module.
-__name__ is the module's name, and
-__file__ is the filename from which the module was loaded.
 
-What's namespace and scoping?
-KEY-VALUE dictionary
-Variables are names (identifiers) that map to objects.
- A namespace is a dictionary of variable names (keys) and their corresponding objects (values).
 
-Local vs Global namespace
-
-IMPORT
+## IMPORT
 You can use any Python source file as a module 
 by executing an import statement in some other Python source file.
 
 FROM　　*　IMPORT *
 Python's FROM  statement lets you import specific attributes 
 from a module into the current namespace.
-'''
+
 from  filename import attribute, function, method
 import filename
 
-filename.py
-where to find filename.py?
-print(u'%s'%sys.__doc__)
-locating modules:
+**where to find filename.py?**
+print(u'%s' % sys.__doc__)
+
+## locating modules:
 - the current directory
 - search directory in the shell varialble PYTHONPATH
 - the Default path, in unix: /usr/local/lib/python/
@@ -292,7 +277,7 @@ os.rmdir(dir_name)
 is checks if two variables refer to the same object, 
 but == checks if the objects pointed to have the same values.
 
-# Handle exceptions with a try/except block
+## Handle exceptions with a try/except block
 try:
     # Use "raise" to raise an error
     raise IndexError("This is an index error")
@@ -305,7 +290,7 @@ else:                    # Optional clause to the try/except block. Must follow 
 finally:                 # Execute under all circumstances
     print("We can clean up resources here")
 
-# Instead of try/finally to cleanup resources you can use a with statement
+## Instead of try/finally to cleanup resources you can use a with statement
 with open("myfile.txt") as f:
     for line in f:
         print(line)
@@ -314,15 +299,16 @@ import math as m
 math.sqrt(16) == m.sqrt(16)
 
 
-Object Oriented Pragraming
-class
-object
-instance
-attribute
-method
-function
-inheritance
+## Object Oriented Pragraming
+- class
+- object
+- instance
+- attribute
+- method
+- function
+- inheritance
 
+```
 class Superhero(Human):
     species = 'Superhuman'
     def __init__(self, name, movie=False, superpowers=["super strength", "bulletproofing"]):
@@ -346,11 +332,12 @@ class Superhero3(Human):
         self.movie = movie
         self.superpowers = superpowers
         super().__init__(name)
-'''
+```
+
 What does super(Employee, self).__init__(name) do?
 That’s how you can run the __init__ method of a parent class reliably. Go search for “python
 super” and read the various advice on it being evil and good for you.
-'''
+
 
     def sing(self):
        return 'Dun, Dun!'
@@ -359,7 +346,7 @@ super” and read the various advice on it being evil and good for you.
        for power in self.superpowers:
            print("I wield the power of {pow}!".format(pow=power))                
 
-
+```
 class Bat:
     species = 'Baty'
     def __init__(self, can_fly=True):
@@ -379,7 +366,7 @@ class Batman(Superhero, Bat):
 
     def sing(self):
       return 'nan nan nan nan nan batman!'
-
+```
 
 ## Animal is- a object look at the extra credit
 class Animal(object):
