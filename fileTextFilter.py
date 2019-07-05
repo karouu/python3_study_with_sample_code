@@ -81,6 +81,6 @@ def rmRecur(rm_name):
         os.remove(rm_name)
     else:
         for f in os.listdir(rm_name):
-            mm = rm_name+'\\'+f
+            mm = rm_name+'/'+f
             rmRecur(mm)
         os.removedirs(rm_name)
