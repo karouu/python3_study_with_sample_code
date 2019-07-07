@@ -62,7 +62,7 @@ def edit_item(no):
 
 @route('/help')
 def help():
-    return static_file('help.html')
+    return static_file('help.html',root='.')
 
 debug(True)
 run(host='0.0.0.0', port=8080, reloader=True)
