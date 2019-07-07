@@ -10,19 +10,7 @@ def todo_list():
     c.close()
     output = template('make_table', rows=result)
     return output
-'''
-@route('/new', method='GET')
-def new_item():
-    new = request.GET.task.strip()
-    conn = sqlite3.connect('todo.db')
-    c = conn.cursor()
-    c.execute("INSERT INTO todo (task, status) VALUES (?,?)", (new, 1))
-    new_id = c.lastrowid
-    conn.commit()
-    c.close()
 
-    return '<p>The new task was inserted into the database, the ID is %s</p>' % new_id
-'''
 @route('/new', method='GET')
 def new_item():
     if request.GET.save:
@@ -60,9 +48,21 @@ def edit_item(no):
 
         return template('edit_task', old=cur_data, no=no)
 
+@route('/item<item:re:[0-9]+>')
+def show_item(item):
+    conn = sqlite3.connect('todo.db')
+    c = conn.cursor()
+    c.execute("SELECT task FROM todo WHERE id LIKE ?", (item,))
+    result = c.fetchall()
+    c.close()
+    if not result:
+        return 'This item number does not exist!'
+    else:
+        return 'Task: %s' % result[0]
+
 @route('/help')
 def help():
-    return static_file('help.html',root='.')
+    return static_file('help.html', root='.')
 
 @route('/json<json:re:[0-9]+>')
 def show_json(json):
@@ -80,6 +80,7 @@ def show_json(json):
 @error(403)
 def mistake403(code):
     return "The parameter you passed has the wrong format!"
+
 @error(404)
 def mistake(code):
     return "Sorry, this page does not exists"
