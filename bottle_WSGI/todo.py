@@ -13,15 +13,11 @@ def todo_list():
 
 @route('/new', method='GET')
 def new_item():
-
     new = request.GET.task.strip()
-
     conn = sqlite3.connect('todo.db')
     c = conn.cursor()
-
-    c.execute("INSERT INTO todo (task,status) VALUES (?,?)", (new, 1))
+    c.execute("INSERT INTO todo (task, status) VALUES (?,?)", (new, 1))
     new_id = c.lastrowid
-
     conn.commit()
     c.close()
 
