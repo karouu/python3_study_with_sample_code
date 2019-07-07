@@ -1,5 +1,5 @@
 import sqlite3
-from bottle import route, run, debug, template, request
+from bottle import route, run, debug, template, request, static_file
 
 @route('/todo')
 def todo_list():
@@ -46,11 +46,11 @@ def edit_item(no):
             status = 1
         else:
             status = 0
-
         conn = sqlite3.connect('todo.db')
         c = conn.cursor()
         c.execute("UPDATE todo SET task = ?, status = ? WHERE id LIKE ?", (edit, status, no))
         conn.commit()
+
         return '<p>The item number %s was successfully updated</p>' % no
     else:
         conn = sqlite3.connect('todo.db')
@@ -59,6 +59,10 @@ def edit_item(no):
         cur_data = c.fetchone()
 
         return template('edit_task', old=cur_data, no=no)
+
+@route('/help')
+def help():
+    return static_file('help.html')
 
 debug(True)
 run(host='0.0.0.0', port=8080, reloader=True)
