@@ -29,7 +29,7 @@ async def randsleep(a: int = 1, b: int = 5, caller=None) -> None:
 
 async def produce(name: int, q: asyncio.Queue) -> None:
     n = await randint(1, 5)
-    for _ in it.repeat(None, n):  # Synchronous
+    for _ in it.repeat(None, n):    # Synchronous
         await randsleep(caller=f"Producer {name}")
         i = await makeitem()
         t = await seconds()
@@ -42,9 +42,7 @@ async def consume(name: int, q: asyncio.Queue) -> None:
         await randsleep(caller=f"Consumer {name}")
         i, t = await q.get()
         now = await seconds()
-        print(
-            f"Consumer {name} got element <{i}>" f" in {now-t:0.5f} seconds."
-        )
+        print(f"Consumer {name} got element <{i}>" f" in {now-t:0.5f} seconds.")
         q.task_done()
 
 

@@ -15,26 +15,22 @@ import aiofiles
 import aiohttp
 from aiohttp import ClientSession
 
-logging.basicConfig(
-    format="%(asctime)s %(levelname)s:%(name)s: %(message)s",
-    level=logging.DEBUG,
-    datefmt="%H:%M:%S",
-    stream=sys.stderr,
-)
+logging.basicConfig(format="%(asctime)s %(levelname)s:%(name)s: %(message)s",
+                    level=logging.DEBUG,
+                    datefmt="%H:%M:%S",
+                    stream=sys.stderr,)
+
 logger = logging.getLogger("areq")
 logging.getLogger("chardet.charsetprober").disabled = True
 
 HREF_RE = re.compile(r'href="(.*?)"')
 
-
 async def fetch_html(url: str, session: ClientSession, **kwargs) -> str:
     """GET request wrapper to fetch page HTML.
-
-    kwargs are passed to `session.request()`.
+            kwargs are passed to `session.request()`.
     """
-
-    # Don't do any try/except here.  If either the request or reading
-    # of bytes raises, let that be handled by caller.
+    # Don't do any try/except here.  
+    # If either the request or reading of bytes raises, let that be handled by caller.
     resp = await session.request(method="GET", url=url, **kwargs)
     resp.raise_for_status()  # raise if status >= 400
     logger.info("Got response [%s] for URL: %s", resp.status, url)
@@ -49,23 +45,16 @@ async def parse(url: str, session: ClientSession, **kwargs) -> set:
     found = set()
     try:
         html = await fetch_html(url=url, session=session, **kwargs)
-    except (
-        aiohttp.ClientError,
-        aiohttp.http_exceptions.HttpProcessingError,
-    ) as e:
-        logger.error(
-            "aiohttp exception for %s [%s]: %s",
-            url,
-            getattr(e, "status", None),
-            getattr(e, "message", None),
-        )
+    except (aiohttp.ClientError, aiohttp.http_exceptions.HttpProcessingError,) as e:
+        logger.error("aiohttp exception for %s [%s]: %s",
+                        url,
+                        getattr(e, "status", None),
+                        getattr(e, "message", None),)
         return found
     except Exception as e:
         # May be raised from other libraries, such as chardet or yarl.
         # logger.exception will show the full traceback.
-        logger.exception(
-            "Non-aiohttp exception occured:  %s", getattr(e, "__dict__", {})
-        )
+        logger.exception("Non-aiohttp exception occured:  %s", getattr(e, "__dict__", {}))
         return found
     else:
         # This portion is not really async, but it is the request/response
@@ -99,9 +88,7 @@ async def bulk_crawl_and_write(file: IO, urls: set, **kwargs) -> None:
     async with ClientSession() as session:
         tasks = []
         for url in urls:
-            tasks.append(
-                write_one(file=file, url=url, session=session, **kwargs)
-            )
+            tasks.append(write_one(file=file, url=url, session=session, **kwargs))
         await asyncio.gather(*tasks)  # see also: return_exceptions=True
 
 
@@ -116,7 +103,7 @@ if __name__ == "__main__":
         urls = set(map(str.strip, infile))
 
     # Header - just a single, initial row-write
-    outpath = here.joinpath("foundurls.txt")
+    outpath = here.joinpath("foundurls_240421.txt")
     with open(outpath, "w") as outfile:
         outfile.write("source_url\tparsed_url\n")
 

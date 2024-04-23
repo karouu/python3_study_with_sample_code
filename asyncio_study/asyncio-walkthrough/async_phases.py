@@ -3,12 +3,10 @@
 
 import asyncio
 
-
 async def phase1(callerid: str):
     print(f"phase 1 called from {callerid}")
     await asyncio.sleep(2)
     return "result1"
-
 
 async def phase2(callerid: str, arg: str):
     print(f"phase 2 called from {callerid}")
@@ -22,6 +20,7 @@ async def outer(callerid: str):
     print(f"outer called from {callerid}")
     r1 = await phase1(callerid)
     r2 = await phase2(callerid, r1)
+
     return r1, r2
 
 

@@ -3,7 +3,6 @@
 
 import time
 
-
 def count():
     print("One")
     time.sleep(1)
